@@ -8,12 +8,12 @@ import { ProductDetailComponent } from './product-detail/product-detail';
 import { SearchComponent } from './search/search';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent }, // Default route
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: '**', component: NotFoundComponent },
-  { path: '', component: HomeComponent },
-  { path: 'user/:id', component: UserDetailComponent },
+  { path: 'user/:id', component: UserDetailComponent }, // Dynamic route
   { path: 'product/:id/:slug', component: ProductDetailComponent },
   { path: 'search', component: SearchComponent },
+
+  { path: '**', component: NotFoundComponent }, // 404 LAST
 ];
