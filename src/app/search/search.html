@@ -1,0 +1,47 @@
+<div class="search-container">
+  <div class="search-header">
+    <h1>🔍 Recherche</h1>
+  </div>
+  <div class="search-form">
+    <div class="search-inputs">
+      <input
+        [(ngModel)]="searchTerm"
+        placeholder="Rechercher..."
+        class="search-input"
+        (keyup.enter)="search()"
+      />
+      <select [(ngModel)]="category" class="category-select">
+        <option value="">Toutes catégories</option>
+        <option value="books">Livres</option>
+        <option value="electronics">Électronique</option>
+        <option value="clothes">Vêtements</option>
+        <option value="food">Alimentation</option>
+      </select>
+      <button (click)="search()" class="btn- search">Rechercher</button>
+      <button (click)="clearSearch()" class="btn- clear">Effacer</button>
+    </div>
+  </div>
+  <div class="search-info" *ngIf="searchTerm || category">
+    <p>
+      <strong>Recherche:</strong> {{ searchTerm || 'Tous' }}
+      <span *ngIf="category"> | <strong>Catégorie:</strong> {{ category }}</span>
+    </p>
+  </div>
+  <div class="loading" *ngIf="isSearching">
+    <div class="spinner"></div>
+    <p>Recherche en cours...</p>
+  </div>
+  <div class="results" *ngIf="!isSearching && results.length > 0">
+    <h3>{{ results.length }} résultat(s) trouvé(s)</h3>
+    <div class="result-item" *ngFor="let result of results">
+      <div class="result-icon"></div>
+      <div class="result-content">
+        <h4>{{ result.title }}</h4>
+        <p class="result-type">Type: {{ result.type }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="no-results" *ngIf="!isSearching && searchTerm && results.length === 0">
+    <p>😕 Aucun résultat trouvé pour "{{ searchTerm }}"</p>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="product-container">
+  <div class="product-detail" *ngIf="product">
+    <div class="product-image">
+      <div class="image-placeholder"></div>
+    </div>
+    <div class="product-info">
+      <h1>{{ product.name }}</h1>
+      <p class="category">{{ product.category }}</p>
+      <div class="price">{{ product.price | currency : 'EUR' }}</div>
+      <div
+        class="stock"
+        [class.in-stock]="product.stock > 0"
+        [class.out-of-stock]="product.stock === 0"
+      >
+        <span *ngIf="product.stock > 0"> En stock ({{ product.stock }} disponibles)</span>
+        <span *ngIf="product.stock === 0"> Rupture de stock</span>
+      </div>
+      <p class="description">{{ product.description }}</p>
+      <div class="product-meta">
+        <p><strong>ID:</strong> {{ product.id }}</p>
+        <p><strong>Slug:</strong> {{ productSlug }}</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-add-cart">Ajouter au panier</button>
+        <button class="btn btn-wishlist">Favoris</button>
+      </div>
+      <a routerLink="/products" class="btn-back">← Retour aux produits</a>
+    </div>
+  </div>
+</div>
